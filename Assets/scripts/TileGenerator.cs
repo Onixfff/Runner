@@ -1,18 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TileGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject[] _tilePrefabs;
+    [SerializeField] private Transform _player;
+    
+    private List<GameObject> _tiles = new List<GameObject>();
     private float _spawnPos = 0;
     private float _tileLength = 50f;
-
-    Transform[] _tiles = new Transform[6];
-
-    [SerializeField] private Transform _player;
     private int _startTiles = 6;
-    private int indexTiles = 0;
+
 
     private void Awake()
     {
@@ -24,34 +22,23 @@ public class TileGenerator : MonoBehaviour
 
     void Update()
     {
-        if (_player.position.z > _spawnPos - (_startTiles * _tileLength))
+        if (_player.position.z > _spawnPos + _tileLength - ((_startTiles * _tileLength)))
         {
-            //SpawnTile(Random.Range(0, _tilePrefabs.Length));
-            EditPositionTile();
-            _spawnPos += _tileLength;
-        }
-    }
-
-    private void EditPositionTile()
-    {
-        if(_player.position.z > _spawnPos  - (_startTiles * _tileLength))
-        {
-            Debug.Log($"SpawnPos: {_spawnPos} \n{_spawnPos - (_startTiles * _tileLength)}");
-            
-            if(indexTiles == _tiles.Length)
-            {
-                indexTiles = 0;
-            }
-            _tiles[indexTiles].position = transform.forward * _spawnPos;
-            indexTiles++;
+            SpawnTile(Random.Range(0, _tilePrefabs.Length));
+            DestroyTiles();
         }
     }
 
     private void SpawnTile(int tileIndex)
     {
         GameObject tile = Instantiate(_tilePrefabs[tileIndex], transform.forward * _spawnPos, transform.rotation);
-        _tiles[indexTiles] = tile.GetComponent<Transform>();
-        indexTiles++;
+        _tiles.Add(tile);
         _spawnPos += _tileLength;
+    }
+
+    private void DestroyTiles()
+    {
+        Destroy(_tiles[0]);
+        _tiles.Remove(_tiles[0]);
     }
 }
