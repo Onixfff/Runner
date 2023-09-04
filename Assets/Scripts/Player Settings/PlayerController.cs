@@ -19,8 +19,11 @@ public class PlayerController : MonoBehaviour
 
     private int _lineToMove = 1;
 
+    private Animator _animator;
+
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _controller = GetComponent<CharacterController>();
     }
 
@@ -47,14 +50,6 @@ public class PlayerController : MonoBehaviour
                 Jump();
         }
 
-        else if (SwipeController.swipeDown)
-        {
-            if (_controller.isGrounded)
-            {
-
-            }
-        }
-
         Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
         if(_lineToMove == 0)
         {
@@ -65,12 +60,11 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * _lineDistance;
         }
 
-        //transform.position = targetPosition;
-
         if (transform.position == targetPosition)
             return;
         Vector3 diff = targetPosition - transform.position;
         Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+
         if(moveDir.sqrMagnitude < diff.sqrMagnitude)
         {
             _controller.Move(moveDir);
@@ -94,11 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        _animator.SetTrigger("IsJump");
         _direction.y = _jumpForce;
-    }
-
-    private void Roll()
-    {
-
     }
 }
