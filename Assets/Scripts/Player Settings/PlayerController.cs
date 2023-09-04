@@ -65,7 +65,21 @@ public class PlayerController : MonoBehaviour
             targetPosition += Vector3.right * _lineDistance;
         }
 
-        transform.position = targetPosition;
+        //transform.position = targetPosition;
+
+        if (transform.position == targetPosition)
+            return;
+        Vector3 diff = targetPosition - transform.position;
+        Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
+        if(moveDir.sqrMagnitude < diff.sqrMagnitude)
+        {
+            _controller.Move(moveDir);
+        }
+        else
+        {
+            _controller.Move(diff);
+        }
+
     }
 
     private void FixedUpdate()

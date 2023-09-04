@@ -31,7 +31,7 @@ public class TileGenerator : MonoBehaviour
 
     private void SpawnTile(int tileIndex)
     {
-        GameObject tile = Instantiate(_tilePrefabs[tileIndex], transform.forward * _spawnPos, transform.rotation);
+        GameObject tile = Instantiate(_tilePrefabs[tileIndex], transform.forward * _spawnPos, Quaternion.Euler(-90, 0, 0));
         _tiles.Add(tile);
         _spawnPos += _tileLength;
     }
