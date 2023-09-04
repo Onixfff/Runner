@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilePrefabs:
-  - {fileID: 4835700023756986963, guid: 6bdf44b94e08e8f4bb8b9b62beb3dedc, type: 3}
+  - {fileID: 4835700023756986963, guid: d607e2ffc2e57fa4fb8afe69b46bef75, type: 3}
   _player: {fileID: 543450653643713978}
 --- !u!4 &1519346783
 Transform:
