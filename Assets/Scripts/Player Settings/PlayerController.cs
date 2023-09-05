@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (isDead == true)
-            return;
+            _gameManager.Finish();
 
         if (SwipeController.swipeRight)
         {
