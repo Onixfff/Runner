@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Гравитация")]
     [Range(-100f, -1)]
     [SerializeField] private float _gravity = -40f;
+    [SerializeField] private GameManager _gameManager;
 
     private CharacterController _controller;
     private Vector3 _direction;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position == targetPosition)
             return;
+
         Vector3 diff = targetPosition - transform.position;
         Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
 
@@ -108,7 +110,6 @@ public class PlayerController : MonoBehaviour
         if (_controller.isGrounded)
         {
             _animator.SetBool("isGrounded", _controller.isGrounded);
-            Debug.Log(_controller.isGrounded);
         }
 
     }
@@ -117,6 +118,15 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool("isGrounded", false);
         _direction.y = _jumpForce;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Coin")
+        {
+            _gameManager.AddCoin();
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

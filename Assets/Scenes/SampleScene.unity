@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 919132149118105346}
+  losePanel: {fileID: 0}
 --- !u!4 &1417942980
 Transform:
   m_ObjectHideFlags: 0
@@ -473,6 +474,10 @@ PrefabInstance:
       propertyPath: _startSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 823587234155778621, guid: 1e3ac29e0696ac54ca81a80eb4c5240c, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 1417942979}
     - target: {fileID: 929783611406347965, guid: 1e3ac29e0696ac54ca81a80eb4c5240c, type: 3}
       propertyPath: m_RootOrder
       value: 1
