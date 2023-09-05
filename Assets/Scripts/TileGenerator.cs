@@ -9,14 +9,21 @@ public class TileGenerator : MonoBehaviour
     private List<GameObject> _tiles = new List<GameObject>();
     private float _spawnPos = 0;
     private float _tileLength = 50f;
-    private int _startTiles = 6;
+    private int _startTiles = 8;
 
 
     private void Awake()
     {
         for (int i = 0; i < _startTiles; i++)
         {
-            SpawnTile(Random.Range(0, _tilePrefabs.Length));
+            if(i == 0)
+            {
+                SpawnTile(0);
+            }
+            else
+            {
+                SpawnTile(Random.Range(1, _tilePrefabs.Length));
+            }
         }
     }
 
