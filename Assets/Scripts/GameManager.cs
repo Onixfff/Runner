@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class GameManager : MonoBehaviour
     private float _startSpeed;
     private float _startJumpFors;
     private float _startCoin = 0;
-    private bool isDead;
 
 
     private void Start()
@@ -35,19 +35,11 @@ public class GameManager : MonoBehaviour
     {
         _image.gameObject.SetActive(true);
         _restart.gameObject.SetActive(true);
-        isDead = true;
-        Time.timeScale = 0;
     }
 
     public void Restart()
     {
-        Debug.Log("restart");
-        isDead = false;
-        Time.timeScale = 1;
-        _textCoin.text = _startCoin.ToString();
-        _coins = 0;
-        player.EditSpeed(_startSpeed);
-        player.EditJumpForce(_startJumpFors);
+        SceneManager.LoadScene(0);
     }
 
     public void AddCoin()
