@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private bool isDead = false;
 
-    public float _jumpForce { get; private set; } = 11;
-    public float _speed { get; private set; } = 2;
+    public float _jumpForce { get; private set; } = 10.8f;
+    public float _speed { get; private set; } = 2.2f;
 
     private void Start()
     {
