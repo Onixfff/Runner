@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private int _lineToMove = 1;
     private Animator _animator;
     private bool isDead = false;
+    private bool _isTraining;
 
     public float _jumpForce { get; private set; } = 10.8f;
     public float _speed { get; private set; } = 2.2f;
